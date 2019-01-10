@@ -1,19 +1,16 @@
-import  express from 'express';
-import logger from 'morgan';
-import dotenv from 'dotenv';
+const express = require('express');
+const logger = require('morgan');
+const bodyParser = require('body-parser');
+import router from './routes';
 
-// Set up the express app
 const app = express();
-dotenv.config();
-
-// Log requests to the console.
 app.use(logger('dev'));
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: false }));
 
-// Parse incoming requests data (https://github.com/expressjs/body-parser)
-app.use(express.json());
-app.use(express.urlencoded({ extended: false }));
+// Require our routes into the application.
+app.use('/', router);
 
-// Setup a default catch-all route that sends back a welcome message in JSON format.
 app.get('*', (req, res) => res.status(200).send({
   message: 'Welcome to the beginning of nothingness.',
 }));
