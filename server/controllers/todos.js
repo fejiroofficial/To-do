@@ -1,8 +1,10 @@
-const Todo = require('../models').Todo;
-const TodoItem = require('../models').TodoItem;
+// const Todo = require('../models').Todo;
+import { Todo } from '../models';
+import { TodoItem } from '../models';
+// const TodoItem = require('../models').TodoItem;
 
-module.exports = {
-  create(req, res) {
+class TodoController {
+  static create(req, res) {
     return Todo
       .create({
         title: req.body.title,
@@ -12,9 +14,9 @@ module.exports = {
         todo
       }))
       .catch(error => res.status(400).send(error));
-  },
+  }
 
-  list(req, res) {
+  static list(req, res) {
     return Todo
       .findAll({
         include: [{
@@ -24,9 +26,9 @@ module.exports = {
       })
       .then(todos => res.status(200).send(todos))
       .catch(error => res.status(400).send(error));
-  },
+  }
 
-  retrieve(req, res) {
+  static retrieve(req, res) {
     return Todo
       .findById(req.params.todoId, {
         include: [{
@@ -43,9 +45,9 @@ module.exports = {
         return res.status(200).send(todo);
       })
       .catch(error => res.status(400).send(error));
-  },
+  }
 
-  update(req, res) {
+  static update(req, res) {
     return Todo
       .findById(req.params.todoId, {
         include: [{
@@ -67,9 +69,9 @@ module.exports = {
           .catch((error) => res.status(400).send(error));
       })
       .catch((error) => res.status(400).send(error));
-  },
+  }
 
-  destroy(req, res) {
+  static destroy(req, res) {
     return Todo
       .findById(req.params.todoId)
       .then(todo => {
@@ -84,5 +86,7 @@ module.exports = {
           .catch(error => res.status(400).send(error));
       })
       .catch(error => res.status(400).send(error));
-  },
+  }
 };
+
+export default TodoController;

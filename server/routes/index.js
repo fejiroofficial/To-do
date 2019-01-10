@@ -1,6 +1,7 @@
 /* eslint linebreak-style: "off" */
 
 import express from 'express';
+import TodosCtrl from '../controllers/todos';
 const todosController = require('../controllers').todos;
 const todoItemsController = require('../controllers').todoItems;
 
@@ -12,15 +13,15 @@ router.get('/api', (req, res) => res.status(200).send({
   }));  
 
 router.route('/api/todos')
-.post(todosController.create)
-.get(todosController.list);
+.post(TodosCtrl.create)
+.get(TodosCtrl.list);
 
 router.post('/api/todos/:todoId/items', todoItemsController.create);
 
 router.route('/api/todos/:todoId')
-.get(todosController.retrieve)
-.put(todosController.update)
-.delete(todosController.destroy);
+.get(TodosCtrl.retrieve)
+.put(TodosCtrl.update)
+.delete(TodosCtrl.destroy);
 
 router.route('/api/todos/:todoId/items/:todoItemId')
 .put(todoItemsController.update)

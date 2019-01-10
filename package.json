@@ -6,7 +6,11 @@
   "scripts": {
     "start": "babel-node bin/www.js",
     "dev": "nodemon ./bin/www.js  --exec babel-node",
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "seed:all": "NODE_ENV=test sequelize db:seed:all",
+    "seed:undoAll": "sequelize db:seed:undo:all",
+    "seed:undo": "sequelize db:seed:undo",
+    "pretest": "NODE_ENV=test npm run migrate && npm run seed:all",
+    "test": "cross-env NODE_ENV=test nyc mocha --timeout 10000 --require babel-register server/test --exit",
     "sequelize": "dotenv sequelize",
     "migrate": "sequelize db:migrate"
   },
@@ -34,6 +38,12 @@
   },
   "devDependencies": {
     "@babel/core": "^7.2.2",
-    "@babel/node": "^7.2.2"
+    "@babel/node": "^7.2.2",
+    "chai": "^4.2.0",
+    "chai-http": "^4.2.1",
+    "cross-env": "^5.2.0",
+    "mocha": "^5.2.0",
+    "mocha-lcov-reporter": "^1.3.0",
+    "sequelize-mock": "^0.10.2"
   }
 }
