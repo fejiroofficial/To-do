@@ -1,0 +1,35 @@
+{
+  "name": "todo",
+  "version": "1.0.0",
+  "description": "todo app",
+  "main": "app.js",
+  "scripts": {
+    "start": "babel-node bin/www.js",
+    "dev": "nodemon ./bin/www.js  --exec babel-node",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "sequelize": "dotenv sequelize",
+    "migrate": "sequelize db:migrate"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/fejiroofficial/To-do.git"
+  },
+  "author": "https://scotch.io/tutorials/getting-started-with-node-express-and-postgres-using-sequelize",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/fejiroofficial/To-do/issues"
+  },
+  "homepage": "https://github.com/fejiroofficial/To-do#readme",
+  "dependencies": {
+    "babel-cli": "^6.26.0",
+    "babel-plugin-transform-object-rest-spread": "^6.26.0",
+    "babel-preset-env": "^1.7.0",
+    "babel-register": "^6.26.0",
+    "dotenv": "^6.2.0",
+    "express": "^4.16.4",
+    "morgan": "^1.9.1",
+    "pg": "^7.7.1",
+    "pg-hstore": "^2.3.2",
+    "sequelize": "^4.42.0"
+  }
+}
